@@ -1,3 +1,5 @@
+import 'package:customer/screens/SignupLogin/Login.dart';
+import 'package:customer/screens/SignupLogin/Signup.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 
@@ -17,14 +19,14 @@ class LoginAndSignupBtn extends StatelessWidget {
           tag: "login_btn",
           child: ElevatedButton(
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return const LoginScreen();
-              //     },
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CustLogin();
+                  },
+                ),
+              );
             },
             child: Text(
               "Login".toUpperCase(),
@@ -40,14 +42,14 @@ class LoginAndSignupBtn extends StatelessWidget {
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) {
-            //       return const SignupScreen();
-            //     },
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const CustSignup();
+                },
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: kPrimaryLightColor, elevation: 0),
