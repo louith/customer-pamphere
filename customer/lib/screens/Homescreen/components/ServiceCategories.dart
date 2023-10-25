@@ -1,4 +1,5 @@
 import 'package:customer/constants.dart';
+import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/Hair.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,6 +23,10 @@ class _ServiceCategoriesState extends State<ServiceCategories> {
     return Container(
       child: Column(
         children: [
+          SizedBox(
+            height: 8,
+            width: MediaQuery.of(context).size.width,
+          ),
           Container(
               width: MediaQuery.of(context).size.width,
               height: 75,
@@ -122,6 +127,7 @@ class _ServiceCategoriesState extends State<ServiceCategories> {
                   ],
                 ),
               )),
+          FaceandSkinFreelancers(),
         ],
       ),
     );

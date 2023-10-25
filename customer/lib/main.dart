@@ -1,9 +1,16 @@
 import 'package:customer/constants.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
+import 'package:customer/screens/SignupLogin/Login.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -40,7 +47,7 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide.none),
         ),
       ),
-      home: const CustHome(),
+      home: const CustWelcome(),
     );
   }
 }
