@@ -1,7 +1,10 @@
 import 'package:customer/components/already_have_an_account_check.dart';
 import 'package:customer/components/background.dart';
+import 'package:customer/components/form_container_widget.dart';
 import 'package:customer/components/widgets.dart';
 import 'package:customer/constants.dart';
+import 'package:customer/screens/Homescreen/Homescreen.dart';
+import 'package:customer/screens/SignupLogin/Signup.dart';
 import 'package:customer/screens/SignupLogin/components/login_topimg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -107,18 +110,84 @@ import 'package:flutter_svg/flutter_svg.dart';
 // }
 
 //loys' code
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Customer Login')),
-      body: Column(
-        children: [
-          Text("Login",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
-        ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Text("Login",
+              //     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+              LoginScreenTopImage(),
+              SizedBox(height: 30),
+              FormContainerWidget(
+                hintText: "Email",
+                isPasswordField: false,
+              ),
+              SizedBox(height: 10),
+              FormContainerWidget(
+                hintText: "Password",
+                isPasswordField: true,
+              ),
+              SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(context,
+                      MaterialPageRoute(builder: ((context) => CustHome())));
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                      child: Text(
+                    "Login",
+                    style: TextStyle(),
+                  )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account?"),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => CustSignUp())));
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                          color: kPrimaryColor, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
