@@ -10,6 +10,8 @@ class MakeupFreelancers extends StatefulWidget {
 class _MakeupFreelancersState extends State<MakeupFreelancers> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('makeup'),
+    );
   }
 }

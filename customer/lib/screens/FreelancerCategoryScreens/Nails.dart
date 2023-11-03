@@ -10,6 +10,8 @@ class NailsFreelancers extends StatefulWidget {
 class _NailsFreelancersState extends State<NailsFreelancers> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('NAILS'),
+    );
   }
 }

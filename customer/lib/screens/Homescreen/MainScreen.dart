@@ -37,11 +37,31 @@ class _CustMainScreenState extends State<CustMainScreen> {
             backgroundColor: kPrimaryLightColor,
             destinations: [
               NavigationDestination(
-                  icon: Icon(Icons.home_outlined), label: 'Home'),
+                icon: Icon(
+                  Icons.home_outlined,
+                ),
+                label: 'Home',
+                selectedIcon: Icon(
+                  Icons.home,
+                  color: kLoysPrimaryIconColor,
+                ),
+              ),
               NavigationDestination(
-                  icon: Icon(Icons.chat_outlined), label: 'Chat'),
+                  icon: Icon(Icons.chat_outlined),
+                  label: 'Chat',
+                  selectedIcon: Icon(
+                    Icons.chat,
+                    color: kLoysPrimaryIconColor,
+                  )),
               NavigationDestination(
-                  icon: Icon(Icons.person_2_outlined), label: 'My Profile'),
+                  icon: Icon(
+                    Icons.person_2_outlined,
+                  ),
+                  label: 'My Profile',
+                  selectedIcon: Icon(
+                    Icons.person_2,
+                    color: kLoysPrimaryIconColor,
+                  )),
             ]),
       ),
     );

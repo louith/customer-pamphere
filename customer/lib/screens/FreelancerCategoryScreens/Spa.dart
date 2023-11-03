@@ -10,6 +10,8 @@ class SpaFreelancers extends StatefulWidget {
 class _SpaFreelancers extends State<SpaFreelancers> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('Spa'),
+    );
   }
 }

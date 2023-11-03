@@ -1,8 +1,15 @@
 import 'dart:developer';
 import 'package:customer/constants.dart';
+import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
+import 'package:customer/screens/FreelancerCategoryScreens/Hair.dart';
 import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
 import 'package:customer/screens/SignupLogin/components/ImagePicker.dart';
 import 'package:flutter/material.dart';
+
+import '../FreelancerCategoryScreens/Lashes.dart';
+import '../FreelancerCategoryScreens/Makeup.dart';
+import '../FreelancerCategoryScreens/Nails.dart';
+import '../FreelancerCategoryScreens/Spa.dart';
 
 class CustHome extends StatefulWidget {
   const CustHome({super.key});
@@ -12,7 +19,15 @@ class CustHome extends StatefulWidget {
 }
 
 class _CustHomeState extends State<CustHome> {
-  int myIndex = 0;
+  int indexhome = 0;
+  final screenshome = [
+    FaceandSkinFreelancers(),
+    HairFreelancers(),
+    LashesFreelancers(),
+    MakeupFreelancers(),
+    NailsFreelancers(),
+    SpaFreelancers(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +36,6 @@ class _CustHomeState extends State<CustHome> {
         Container(
           width: MediaQuery.of(context).size.width,
           height: 80,
-          color: kPrimaryColor,
           padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
           child: Column(
             children: [
@@ -71,36 +85,75 @@ class _CustHomeState extends State<CustHome> {
         SizedBox(
           height: 8,
         ),
-        ServiceCategories(),
+        Container(
+          height: MediaQuery.of(context).size.height - 88,
+          width: MediaQuery.of(context).size.width,
+          child: NavigationBarTheme(
+            data: NavigationBarThemeData(
+                indicatorColor: kPrimaryColor,
+                labelTextStyle: MaterialStateProperty.all(
+                    TextStyle(fontSize: 14, fontWeight: FontWeight.w500))
+                //u can add text style shits din
+                //u can add bg color din
+                ),
+            child: Column(children: [
+              NavigationBar(
+                  selectedIndex: indexhome,
+                  onDestinationSelected: (indexhome) =>
+                      setState(() => this.indexhome = indexhome),
+                  backgroundColor: kPrimaryLightColor,
+                  destinations: [
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.home_outlined,
+                      ),
+                      label: 'Home',
+                      selectedIcon: Icon(
+                        Icons.home,
+                        color: kLoysPrimaryIconColor,
+                      ),
+                    ),
+                    NavigationDestination(
+                        icon: Icon(Icons.chat_outlined),
+                        label: 'Chat',
+                        selectedIcon: Icon(
+                          Icons.chat,
+                          color: kLoysPrimaryIconColor,
+                        )),
+                    NavigationDestination(
+                        icon: Icon(
+                          Icons.person_2_outlined,
+                        ),
+                        label: 'My Profile',
+                        selectedIcon: Icon(
+                          Icons.person_2,
+                          color: kLoysPrimaryIconColor,
+                        )),
+                    NavigationDestination(
+                        icon: Icon(
+                          Icons.person_2_outlined,
+                        ),
+                        label: 'My Profile',
+                        selectedIcon: Icon(
+                          Icons.person_2,
+                          color: kLoysPrimaryIconColor,
+                        )),
+                    NavigationDestination(
+                        icon: Icon(
+                          Icons.person_2_outlined,
+                        ),
+                        label: 'My Profile',
+                        selectedIcon: Icon(
+                          Icons.person_2,
+                          color: kLoysPrimaryIconColor,
+                        )),
+                  ]),
+              Container(child: screenshome[indexhome])
+            ]),
+          ),
+        ),
+        // Expanded(child: Container(child: screenshome[indexhome]))
       ]),
-
-      // title: Text('Address placeholder'),
-
-      // bottom: PreferredSize(
-      //     preferredSize: Size.zero,
-      //     child: Text(
-      //         '#504 Neptune Street, Margarita Village, Bajada, Davao City')),
-      // leading: Icon(Icons.pin_drop),
-
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: myIndex,
-          onTap: (int index) {
-            setState(() {
-              myIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.chat_bubble), label: 'Chat'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
-          ]),
     );
   }
 }
@@ -139,3 +192,94 @@ class _CustHomeState extends State<CustHome> {
 //   // @override
 //   // Widget buildSuggestions(BuildContext context) {}
 // }
+
+class ServiceCategories extends StatefulWidget {
+  const ServiceCategories({super.key});
+
+  @override
+  State<ServiceCategories> createState() => _ServiceCategoriesState();
+}
+
+class _ServiceCategoriesState extends State<ServiceCategories> {
+  // int _currentIndex = 0;
+
+  // final List<Widget> _tabs = [
+  //   HairFreelancers(),
+  // ];
+
+  int indexhome = 0;
+  final screenshome = [
+    FaceandSkinFreelancers(),
+    HairFreelancers(),
+    LashesFreelancers(),
+    MakeupFreelancers(),
+    NailsFreelancers(),
+    SpaFreelancers(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: NavigationBarTheme(
+        data: NavigationBarThemeData(
+            indicatorColor: kPrimaryColor,
+            labelTextStyle: MaterialStateProperty.all(
+                TextStyle(fontSize: 14, fontWeight: FontWeight.w500))
+            //u can add text style shits din
+            //u can add bg color din
+            ),
+        child: NavigationBar(
+            selectedIndex: indexhome,
+            onDestinationSelected: (indexhome) =>
+                setState(() => this.indexhome = indexhome),
+            backgroundColor: kPrimaryLightColor,
+            destinations: [
+              NavigationDestination(
+                icon: Icon(
+                  Icons.home_outlined,
+                ),
+                label: 'Home',
+                selectedIcon: Icon(
+                  Icons.home,
+                  color: kLoysPrimaryIconColor,
+                ),
+              ),
+              NavigationDestination(
+                  icon: Icon(Icons.chat_outlined),
+                  label: 'Chat',
+                  selectedIcon: Icon(
+                    Icons.chat,
+                    color: kLoysPrimaryIconColor,
+                  )),
+              NavigationDestination(
+                  icon: Icon(
+                    Icons.person_2_outlined,
+                  ),
+                  label: 'My Profile',
+                  selectedIcon: Icon(
+                    Icons.person_2,
+                    color: kLoysPrimaryIconColor,
+                  )),
+              NavigationDestination(
+                  icon: Icon(
+                    Icons.person_2_outlined,
+                  ),
+                  label: 'My Profile',
+                  selectedIcon: Icon(
+                    Icons.person_2,
+                    color: kLoysPrimaryIconColor,
+                  )),
+              NavigationDestination(
+                  icon: Icon(
+                    Icons.person_2_outlined,
+                  ),
+                  label: 'My Profile',
+                  selectedIcon: Icon(
+                    Icons.person_2,
+                    color: kLoysPrimaryIconColor,
+                  )),
+            ]),
+      ),
+    );
+  }
+}
