@@ -280,10 +280,11 @@ class _CustSignUpState extends State<CustSignUp> {
               ),
               SizedBox(height: 30),
               GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => CustHome())));
-                },
+                onTap: _signUp,
+                // () {
+                //   Navigator.push(context,
+                //       MaterialPageRoute(builder: ((context) => CustHome())));
+                // },
                 child: Container(
                   width: double.infinity,
                   height: 50,
@@ -336,5 +337,14 @@ class _CustSignUpState extends State<CustSignUp> {
     String password = _passwordController.text;
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("User successfully created");
+      // Navigator.pushNamed(context, "/home");
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => CustHome())));
+    } else {
+      print("Some error happened");
+    }
   }
 }

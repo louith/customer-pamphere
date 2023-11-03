@@ -1,5 +1,6 @@
 import 'package:customer/constants.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
+import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/SignupLogin/Login.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide.none),
         ),
       ),
-      home: const CustWelcome(),
+      home: const CustMainScreen(),
     );
   }
 }

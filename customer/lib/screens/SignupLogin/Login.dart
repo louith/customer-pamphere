@@ -6,8 +6,10 @@ import 'package:customer/constants.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/SignupLogin/Signup.dart';
 import 'package:customer/screens/SignupLogin/components/login_topimg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:customer/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 
 //Jasper's code
 // class CustLogin extends StatefulWidget {
@@ -118,6 +120,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,20 +147,19 @@ class _LoginScreenState extends State<LoginScreen> {
               LoginScreenTopImage(),
               SizedBox(height: 30),
               FormContainerWidget(
+                controller: _emailController,
                 hintText: "Email",
                 isPasswordField: false,
               ),
               SizedBox(height: 10),
               FormContainerWidget(
+                controller: _passwordController,
                 hintText: "Password",
                 isPasswordField: true,
               ),
               SizedBox(height: 30),
               GestureDetector(
-                onTap: () {
-                  Navigator.pushAndRemoveUntil(context,
-                      MaterialPageRoute(builder: ((context) => CustHome())));
-                },
+                onTap: _signIn,
                 child: Container(
                   width: double.infinity,
                   height: 50,
@@ -190,5 +204,21 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _signIn() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("User successfully LOGGED IN");
+      // Navigator.pushNamed(context, "/home");
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => CustHome())));
+    } else {
+      print("Some error happened");
+    }
   }
 }

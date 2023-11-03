@@ -21,115 +21,106 @@ class _ServiceCategoriesState extends State<ServiceCategories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 8,
-            width: MediaQuery.of(context).size.width,
-          ),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              height: 75,
-              color: Colors.white,
-              child: Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                          child: Container(
-                              child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/hair.svg',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text('Hair')
-                            ],
-                          )),
-                          onTap: () {}),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          child: Container(
-                              child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/makeup.svg',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text('Makeup')
-                            ],
-                          )),
-                          onTap: () {}),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          child: Container(
-                              child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/spa.svg',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text('Spa')
-                            ],
-                          )),
-                          onTap: () {}),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          child: Container(
-                              child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/nails.svg',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text('Nails')
-                            ],
-                          )),
-                          onTap: () {}),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          child: Container(
-                              child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/lashes.svg',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text('Lashes')
-                            ],
-                          )),
-                          onTap: () {}),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          child: Container(
-                              child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/face & skin.svg',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text('Face & Skin')
-                            ],
-                          )),
-                          onTap: () {}),
-                    ),
-                  ],
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 75,
+          color: Colors.white,
+          child: Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                      child: Container(
+                          child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/hair.svg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          Text('Hair')
+                        ],
+                      )),
+                      onTap: () {}),
                 ),
-              )),
-          FaceandSkinFreelancers(),
-        ],
-      ),
+                Expanded(
+                  child: InkWell(
+                      child: Container(
+                          child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/makeup.svg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          Text('Makeup')
+                        ],
+                      )),
+                      onTap: () {}),
+                ),
+                Expanded(
+                  child: InkWell(
+                      child: Container(
+                          child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/spa.svg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          Text('Spa')
+                        ],
+                      )),
+                      onTap: () {}),
+                ),
+                Expanded(
+                  child: InkWell(
+                      child: Container(
+                          child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/nails.svg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          Text('Nails')
+                        ],
+                      )),
+                      onTap: () {}),
+                ),
+                Expanded(
+                  child: InkWell(
+                      child: Container(
+                          child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/lashes.svg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          Text('Lashes')
+                        ],
+                      )),
+                      onTap: () {}),
+                ),
+                Expanded(
+                  child: InkWell(
+                      child: Container(
+                          child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/face & skin.svg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          Text('Face & Skin')
+                        ],
+                      )),
+                      onTap: () {}),
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
