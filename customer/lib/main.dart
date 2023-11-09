@@ -1,4 +1,5 @@
 import 'package:customer/constants.dart';
+import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/SignupLogin/Login.dart';
@@ -22,34 +23,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'PampHere',
-      theme: ThemeData(
-        fontFamily: 'Inter',
-        primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor: kPrimaryColor,
-          shape: const StadiumBorder(),
-          maximumSize: const Size(double.infinity, 56),
-          minimumSize: const Size(double.infinity, 56),
-        )),
-        inputDecorationTheme: const InputDecorationTheme(
-          filled: true,
-          fillColor: kPrimaryLightColor,
-          iconColor: kPrimaryColor,
-          prefixIconColor: kPrimaryColor,
-          contentPadding: EdgeInsets.symmetric(
-              horizontal: defaultPadding, vertical: defaultPadding),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              borderSide: BorderSide.none),
+        debugShowCheckedModeBanner: false,
+        title: 'PampHere',
+        theme: ThemeData(
+          fontFamily: 'Inter',
+          primaryColor: kPrimaryColor,
+          scaffoldBackgroundColor: Colors.white,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+            elevation: 0,
+            backgroundColor: kPrimaryColor,
+            shape: const StadiumBorder(),
+            maximumSize: const Size(double.infinity, 56),
+            minimumSize: const Size(double.infinity, 56),
+          )),
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: kPrimaryLightColor,
+            iconColor: kPrimaryColor,
+            prefixIconColor: kPrimaryColor,
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                borderSide: BorderSide.none),
+          ),
         ),
-      ),
-      home: const CustMainScreen(),
-    );
+        // home: const CustMainScreen(),
+        home: FaceandSkinFreelancers());
   }
 }
 

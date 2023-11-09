@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+var workersdb = FirebaseFirestore.instance.collection('users');
 
 class FaceandSkinFreelancers extends StatefulWidget {
   const FaceandSkinFreelancers({super.key});
