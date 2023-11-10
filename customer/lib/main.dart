@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // home: const CustMainScreen(),
-        home: FaceandSkinFreelancers());
+        home: CustMainScreen());
   }
 }
 

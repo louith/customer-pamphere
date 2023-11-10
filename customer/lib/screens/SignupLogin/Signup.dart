@@ -6,6 +6,7 @@ import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/SignupLogin/Login.dart';
 import 'package:customer/screens/SignupLogin/components/signup_topimg.dart';
+import 'package:customer/screens/customerProfile/custprofile.dart';
 import 'package:customer/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -243,7 +244,7 @@ class _CustSignUpState extends State<CustSignUp> {
       print("User successfully created");
       // Navigator.pushNamed(context, "/home");
       Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => CustMainScreen())));
+          context, MaterialPageRoute(builder: ((context) => CustProfile())));
     } else {
       print("Some error happened");
     }

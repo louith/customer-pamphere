@@ -64,7 +64,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: kPrimaryColor.withOpacity(.35),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(30),
       ),
       child: new TextFormField(
         style: TextStyle(color: kPrimaryColor),

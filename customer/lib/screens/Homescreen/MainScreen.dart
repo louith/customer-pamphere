@@ -1,6 +1,7 @@
 import 'package:customer/constants.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
+import 'package:customer/screens/customerProfile/custprofile.dart';
 import 'package:flutter/material.dart';
 
 class CustMainScreen extends StatefulWidget {
@@ -12,13 +13,7 @@ class CustMainScreen extends StatefulWidget {
 
 class _CustMainScreenState extends State<CustMainScreen> {
   int index = 0;
-  final screens = [
-    CustHome(),
-    ServiceCategories(),
-    Center(
-      child: (Text('MY PROFILE BITCH')),
-    )
-  ];
+  final screens = [CustHome(), ServiceCategories(), CustProfile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
