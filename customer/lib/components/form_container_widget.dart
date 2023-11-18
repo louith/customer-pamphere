@@ -1,4 +1,4 @@
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:flutter/material.dart';
 
 // class FormContainerWidget extends StatefulWidget {
@@ -30,18 +30,20 @@ import 'package:flutter/material.dart';
 // }
 
 class FormContainerWidget extends StatefulWidget {
-  const FormContainerWidget(
-      {super.key,
-      this.controller,
-      this.fieldKey,
-      this.isPasswordField,
-      this.hintText,
-      this.labelText,
-      this.helperText,
-      this.onSaved,
-      this.validator,
-      this.onFieldSubmitted,
-      this.inputType});
+  const FormContainerWidget({
+    super.key,
+    this.controller,
+    this.fieldKey,
+    this.isPasswordField,
+    this.hintText,
+    this.labelText,
+    this.helperText,
+    this.onSaved,
+    this.validator,
+    this.onFieldSubmitted,
+    this.inputType,
+    this.icon,
+  });
   final TextEditingController? controller;
   final Key? fieldKey;
   final bool? isPasswordField;
@@ -52,22 +54,30 @@ class FormContainerWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final ValueChanged<String?>? onFieldSubmitted;
   final TextInputType? inputType;
+  final IconData? icon;
   @override
   State<FormContainerWidget> createState() => _FormContainerWidgetState();
 }
 
 class _FormContainerWidgetState extends State<FormContainerWidget> {
   bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
+    IconData? icon;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: kPrimaryColor.withOpacity(.35),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(90),
       ),
-      child: new TextFormField(
-        style: TextStyle(color: kPrimaryColor),
+      child: TextFormField(
+        style: TextStyle(
+            color: kPrimaryColor,
+            fontSize: 13,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500),
+        cursorColor: kPrimaryColor,
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.fieldKey,
@@ -79,7 +89,12 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
             border: InputBorder.none,
             filled: true,
             hintText: widget.hintText,
-            hintStyle: TextStyle(color: Colors.black45),
+            // prefixIcon: Icon(icon),
+            // prefixIconColor: kPrimaryColor,
+            // prefixIcon: Padding(
+            //     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            //     child: Icon(icon)),
+            hintStyle: TextStyle(color: const Color.fromARGB(115, 83, 73, 73)),
             suffixIcon: new GestureDetector(
               onTap: () {
                 setState(() {

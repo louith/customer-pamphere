@@ -1,4 +1,4 @@
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {

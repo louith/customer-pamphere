@@ -1,4 +1,4 @@
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -168,3 +168,29 @@ SizedBox logOutButton(BuildContext context) {
     ),
   );
 }
+
+//Loys' constant elevated button
+
+Widget elevButton({
+  required String title,
+  // IconData? icon,
+  required Function()? onClicked,
+}) =>
+    ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: kPrimaryColor,
+          shape: const StadiumBorder(),
+          maximumSize: const Size(double.infinity, 56),
+          minimumSize: const Size(double.infinity, 56),
+        ),
+        onPressed: onClicked,
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 13,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+          ),
+        ));

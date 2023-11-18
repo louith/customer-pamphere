@@ -1,6 +1,6 @@
 import 'package:customer/components/already_have_an_account_check.dart';
 import 'package:customer/components/widgets.dart';
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/main.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
@@ -121,7 +121,7 @@ import 'package:customer/components/already_have_an_account_check.dart';
 import 'package:customer/components/background.dart';
 import 'package:customer/components/form_container_widget.dart';
 import 'package:customer/components/widgets.dart';
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/screens/SignupLogin/components/login_topimg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -136,6 +136,7 @@ class CustSignUp extends StatefulWidget {
 
 class _CustSignUpState extends State<CustSignUp> {
   final FirebaseAuthService _auth = FirebaseAuthService();
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -163,23 +164,39 @@ class _CustSignUpState extends State<CustSignUp> {
               //     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
               SignUpScreenTopImage(),
               SizedBox(height: 30),
-              FormContainerWidget(
-                controller: _usernameController,
-                hintText: "Username",
-                isPasswordField: false,
-              ),
-              SizedBox(height: 10),
-              FormContainerWidget(
-                controller: _emailController,
-                hintText: "Email",
-                isPasswordField: false,
-              ),
-              SizedBox(height: 10),
-              FormContainerWidget(
-                controller: _passwordController,
-                hintText: "Password",
-                isPasswordField: true,
-              ),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      FormContainerWidget(
+                        controller: _usernameController,
+                        hintText: "Username",
+                        isPasswordField: false,
+                        validator: (val) =>
+                            val!.isEmpty ? 'Enter a username' : null,
+                      ),
+                      SizedBox(height: 10),
+                      FormContainerWidget(
+                        controller: _emailController,
+                        hintText: "Email",
+                        icon: Icons.email_outlined,
+                        isPasswordField: false,
+                        validator: (val) =>
+                            val!.isEmpty ? 'Enter an email' : null,
+                      ),
+                      SizedBox(height: 10),
+                      FormContainerWidget(
+                        controller: _passwordController,
+                        hintText: "Password",
+                        isPasswordField: true,
+                        icon: Icons.password,
+                        validator: (val) => val!.length < 6
+                            ? 'Create a password with at least 6 characters'
+                            : null,
+                      ),
+                    ],
+                  )),
+
               SizedBox(height: 30),
               GestureDetector(
                 onTap: _signUp,
@@ -188,16 +205,22 @@ class _CustSignUpState extends State<CustSignUp> {
                 //       MaterialPageRoute(builder: ((context) => CustHome())));
                 // },
                 child: Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
                     color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(90),
                   ),
                   child: Center(
                       child: Text(
-                    "Sign Up",
-                    style: TextStyle(),
+                    "SIGN UP",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
                   )),
                 ),
               ),
@@ -237,14 +260,15 @@ class _CustSignUpState extends State<CustSignUp> {
     String username = _usernameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
+    String error = "";
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-    if (user != null) {
+    if (_formKey.currentState!.validate()) {
       print("User successfully created");
       // Navigator.pushNamed(context, "/home");
       Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => CustProfile())));
+          context, MaterialPageRoute(builder: ((context) => AfterSignup())));
     } else {
       print("Some error happened");
     }

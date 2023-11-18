@@ -1,4 +1,4 @@
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/Hair.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/Lashes.dart';

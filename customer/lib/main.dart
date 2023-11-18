@@ -1,12 +1,16 @@
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
+import 'package:customer/screens/Homescreen/my_profile.dart';
 import 'package:customer/screens/SignupLogin/Login.dart';
+import 'package:customer/screens/SignupLogin/Signup.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
+import 'package:customer/screens/customerProfile/custprofile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +30,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'PampHere',
         theme: ThemeData(
+          textTheme: TextTheme(
+              displayMedium: GoogleFonts.inter(
+                  fontWeight: FontWeight.bold, color: kPrimaryLightColor),
+              bodyLarge: GoogleFonts.inter()),
           fontFamily: 'Inter',
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
@@ -38,6 +46,10 @@ class MyApp extends StatelessWidget {
             minimumSize: const Size(double.infinity, 56),
           )),
           inputDecorationTheme: const InputDecorationTheme(
+            errorStyle: TextStyle(color: Colors.red),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red),
+            ),
             filled: true,
             fillColor: kPrimaryLightColor,
             iconColor: kPrimaryColor,
@@ -49,7 +61,7 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide.none),
           ),
         ),
-        // home: const CustMainScreen(),
+        // home: const CustWelcome(),
         home: CustMainScreen());
   }
 }

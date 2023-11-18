@@ -2,7 +2,7 @@ import 'package:customer/components/already_have_an_account_check.dart';
 import 'package:customer/components/background.dart';
 import 'package:customer/components/form_container_widget.dart';
 import 'package:customer/components/widgets.dart';
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/SignupLogin/Signup.dart';
@@ -66,12 +66,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                   decoration: BoxDecoration(
                     color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(90),
                   ),
                   child: Center(
                       child: Text(
-                    "Login",
-                    style: TextStyle(),
+                    "LOGIN",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
                   )),
                 ),
               ),

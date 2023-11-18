@@ -40,6 +40,9 @@ dependencies:
   firebase_auth: ^4.12.0
   firebase_storage: ^11.4.0
   image_picker: ^1.0.4
+  google_fonts: ^6.1.0
+  flutter_native_splash: ^2.3.5
+  line_icons: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +54,16 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
+
+flutter_native_splash:
+  color: "#6F35A5"
+  image: assets/images/splash_logo.png
+
+  android_12:
+    image: assets/images/splash_logo.png
+    color: "#6F35A5"
+    icon_background_color: "#111111"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

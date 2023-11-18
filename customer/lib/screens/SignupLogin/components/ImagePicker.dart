@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:customer/constants.dart';
+import 'package:customer/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 

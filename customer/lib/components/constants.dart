@@ -9,3 +9,7 @@ const kLoysPrimaryIconColor = Color.fromARGB(255, 226, 211, 245);
 const double defaultPadding = 16.0;
 const double defaultformspacing = 5;
 const double defTitleFontSize = 20;
+
+//Strings
+const String splashImage = 'assets/images/splash_logo.png';
+const String suzyImg = 'assets/images/red.jpg';
