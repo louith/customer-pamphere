@@ -71,6 +71,11 @@ class _MyProfileState extends State<MyProfile> {
 
               //Menu
               ProfileMenuWidget(
+                title: 'My Locations',
+                icon: LineIcons.locationArrow,
+                onPress: () {},
+              ),
+              ProfileMenuWidget(
                 title: 'Settings',
                 icon: LineIcons.cog,
                 onPress: () {},

@@ -1,5 +1,5 @@
 import 'package:customer/screens/Homescreen/Homescreen.dart';
-import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
+// import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';00
 import 'package:flutter/material.dart';
 
 class LocationHome extends StatefulWidget {
@@ -10,10 +10,12 @@ class LocationHome extends StatefulWidget {
 }
 
 class _LocationHomeState extends State<LocationHome> {
+  TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      // width: MediaQuery.of(context).size.width,
       // height: 160,
       // padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
       child: Column(
@@ -48,6 +50,20 @@ class _LocationHomeState extends State<LocationHome> {
                 onPressed: () {},
                 icon: Icon(Icons.menu),
               ),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 40,
+                width: 200,
+                child: TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
               // IconButton(
               //     onPressed: () {
               //       showSearch(
@@ -58,7 +74,7 @@ class _LocationHomeState extends State<LocationHome> {
               //     icon: Icon(Icons.search))
             ],
           ),
-          ServiceCategories()
+          // ServiceCategories()
         ],
       ),
     );
