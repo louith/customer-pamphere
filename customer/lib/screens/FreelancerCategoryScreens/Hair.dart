@@ -14,17 +14,13 @@ class _HairFreelancersState extends State<HairFreelancers> {
 
   //Strings to assign to text widgets (fieldnames)
   // String docID =
-  String fname = 'firstName';
-  String lname = 'lastName';
-  String category = 'nails';
-  String city = 'city';
-  String street = 'streetAddress';
 
   String fnameVal = "";
   String lnameVal = '';
   String categoryVal = '';
   String cityVal = '';
   String streetVal = '';
+  String fullname = " ";
 
   var hairs = {};
   List hairdocs = [];
@@ -66,13 +62,23 @@ class _HairFreelancersState extends State<HairFreelancers> {
         Map<String, dynamic> hairsCheckMap =
             hairsCheck.data() as Map<String, dynamic>;
         if (hairsCheckMap.containsKey('nails')) {
+          DocumentSnapshot step1 = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(plainID)
+              .collection('userDetails')
+              .doc('step1')
+              .get();
+
+          Map<String, dynamic> step1Map = step1.data() as Map<String, dynamic>;
+
           setState(() {
-            fnameVal = hairsCheckMap[fname];
-            lnameVal = hairsCheckMap[lname];
-            categoryVal = hairsCheckMap[category];
-            cityVal = hairsCheckMap[city];
-            streetVal = hairsCheckMap[street];
+            fnameVal = step1Map['firstName'];
+            lnameVal = step1Map['lastName'];
+            fullname = fnameVal + lnameVal;
+            cityVal = step1Map['streetAddress'];
+            streetVal = step1Map['city'];
           });
+          print(step1Map.entries);
         } else {
           print('hala walay hair');
         }
@@ -97,21 +103,21 @@ class _HairFreelancersState extends State<HairFreelancers> {
     return Container(
       child: Column(
         children: [
-          ElevatedButton(onPressed: getHairs, child: const Text('try query')),
-          Text('First name: $fnameVal')
+          // ElevatedButton(onPressed: getHairs, child: const Text('try query')),
+          Text('First name: $fnameVal'),
 
-          // Expanded(
-          //     child: FutureBuilder(
-          //         future: getPlainDocIds(),
-          //         builder: (context, snapshot) {
-          //           return ListView.builder(
-          //               itemCount: 2,
-          //               itemBuilder: (context, index) {
-          //                 return ListTile(
-          //                   title: Text('hair'),
-          //                 );
-          //               });
-          //         }))
+          Expanded(
+              child: FutureBuilder(
+                  future: getPlainDocIds(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                        itemCount: 2,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text('hair'),
+                          );
+                        });
+                  }))
         ],
       ),
     );
