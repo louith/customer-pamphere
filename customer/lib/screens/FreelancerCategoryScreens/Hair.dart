@@ -1,5 +1,62 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:customer/screens/FreelancerCategoryScreens/components/getVerified.dart';
 import 'package:flutter/material.dart';
+
+final db = FirebaseFirestore.instance;
+//document IDs based off selected query
+
+//Strings to assign to text widgets (fieldnames)
+//freelancers & salons
+String address = '';
+String name = '';
+
+//feedbacks tba
+List<dynamic> fFeedbacks = [];
+List<dynamic> sFeedbacks = [];
+
+List<dynamic> hairSubCats = [];
+List<dynamic> hairList = [];
+
+// List<dynamic> salonPlaindocIds = [];
+
+Future<void> getHairs() async {
+  for (String plainID in plaindocIds) {
+    try {
+      bool hairExists;
+
+      final DocumentSnapshot hairs = await db
+          .collection('users')
+          .doc(plainID)
+          .collection('categories')
+          .doc('Hair')
+          .get();
+
+      Map<String, dynamic> hairsMap = hairs.data() as Map<String, dynamic>;
+
+      hairSubCats = hairsMap.keys.toList();
+
+      if (hairs.exists) {
+        print('Hairs exist');
+
+        hairList.add(plainID);
+
+        final DocumentSnapshot profile =
+            await db.collection('users').doc(plainID).get();
+
+        Map<String, dynamic> profileMap =
+            profile.data() as Map<String, dynamic>;
+
+        name = profileMap[name];
+        address = profileMap[address];
+      } else {
+        print('NO HAIRS =_=');
+      }
+      // print(plainID);
+    } catch (e) {
+      print('Error getting data');
+    }
+  }
+}
 
 class HairFreelancers extends StatefulWidget {
   const HairFreelancers({super.key});
@@ -9,93 +66,11 @@ class HairFreelancers extends StatefulWidget {
 }
 
 class _HairFreelancersState extends State<HairFreelancers> {
-  final db = FirebaseFirestore.instance;
-  //document IDs based off selected query
-
-  //Strings to assign to text widgets (fieldnames)
-  // String docID =
-
-  String fnameVal = "";
-  String lnameVal = '';
-  String categoryVal = '';
-  String cityVal = '';
-  String streetVal = '';
-  String fullname = " ";
-
-  var hairs = {};
-  List hairdocs = [];
-  List<dynamic> plaindocIds = [];
-
-  // //list of filtered docs
-  // final Future<QuerySnapshot<Map<String, dynamic>>> plainVerified_doc =
-  //     FirebaseFirestore.instance
-  //         .collection('users')
-  //         .where('role', whereIn: ['freelancer', 'salon'])
-  //         .where("status", isEqualTo: "verified")
-  //         .get();
-
-  //gets those docs that matches the query & conditionals
-  Future<void> getPlainDocIds() async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        // .where('role', whereIn: ['freelancer', 'salon'])
-        .where('role', isEqualTo: 'freelancer')
-        .where("status", isEqualTo: "verified")
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((element) {
-              // print(element.reference);
-              print(element.reference.id);
-              plaindocIds.add(element.reference.id.toString());
-            }));
-  }
-
-  Future<void> getHairs() async {
-    for (String plainID in plaindocIds) {
-      try {
-        DocumentSnapshot hairsCheck = await FirebaseFirestore.instance
-            .collection('users')
-            .doc(plainID)
-            .collection('userDetails')
-            .doc('step2')
-            .get();
-
-        Map<String, dynamic> hairsCheckMap =
-            hairsCheck.data() as Map<String, dynamic>;
-        if (hairsCheckMap.containsKey('nails')) {
-          DocumentSnapshot step1 = await FirebaseFirestore.instance
-              .collection('users')
-              .doc(plainID)
-              .collection('userDetails')
-              .doc('step1')
-              .get();
-
-          Map<String, dynamic> step1Map = step1.data() as Map<String, dynamic>;
-
-          setState(() {
-            fnameVal = step1Map['firstName'];
-            lnameVal = step1Map['lastName'];
-            fullname = fnameVal + lnameVal;
-            cityVal = step1Map['streetAddress'];
-            streetVal = step1Map['city'];
-          });
-          print(step1Map.entries);
-        } else {
-          print('hala walay hair');
-        }
-      } catch (e) {
-        print('Error fetching user details: $e');
-      }
-    }
-  }
-
   @override
   void initState() {
-    // print(plainVerified_doc);
+    super.initState();
     getPlainDocIds();
     getHairs();
-    // print(subs.toString());
-    // plaindocIds.forEach((id) => print(id));
-    super.initState();
   }
 
   @override
@@ -103,22 +78,76 @@ class _HairFreelancersState extends State<HairFreelancers> {
     return Container(
       child: Column(
         children: [
-          // ElevatedButton(onPressed: getHairs, child: const Text('try query')),
-          Text('First name: $fnameVal'),
-
+          Text('hshs'),
+          ElevatedButton(onPressed: getHairs, child: Text('hhaha')),
           Expanded(
-              child: FutureBuilder(
-                  future: getPlainDocIds(),
-                  builder: (context, snapshot) {
-                    return ListView.builder(
-                        itemCount: 2,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text('hair'),
-                          );
-                        });
+              child: ListView.builder(
+                  itemCount: hairList.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: Offset(0, 3))
+                        ],
+                      ),
+                      // border: BorderDirectional(
+                      //     top: BorderSide(
+                      //         width: 1, color: Colors.black38))),
+                      child: ListTile(
+                        leading: Image.asset(
+                          'assets/images/suzy.jpg',
+                          width: 50,
+                          height: 50,
+                        ),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            SubCategoriesRow(itemList: hairSubCats),
+                            Text(
+                              'Subtitle',
+                              style: TextStyle(fontWeight: FontWeight.w300),
+                            )
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(),
+                        onTap: () {},
+                      ),
+                    );
                   }))
         ],
+      ),
+    );
+  }
+}
+
+class SubCategoriesRow extends StatelessWidget {
+  const SubCategoriesRow({super.key, required this.itemList});
+
+  final List<dynamic> itemList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: List.generate(
+        itemList.length,
+        (index) => Container(
+          padding: EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+          decoration: BoxDecoration(
+              color: Colors.purple[100],
+              borderRadius: BorderRadius.circular(100)),
+          child: Text(itemList[index]),
+        ),
       ),
     );
   }

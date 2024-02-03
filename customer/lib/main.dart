@@ -61,8 +61,8 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide.none),
           ),
         ),
-        // home: const CustWelcome(),
-        home: CustMainScreen());
+        home: const CustWelcome());
+    // home: CustMainScreen());
   }
 }
 

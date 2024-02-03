@@ -22,6 +22,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final FirebaseAuthService _auth = FirebaseAuthService();
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -51,12 +52,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _emailController,
                 hintText: "Email",
                 isPasswordField: false,
+                validator: (val) => val!.isEmpty ? 'Enter an email' : null,
               ),
               SizedBox(height: 10),
               FormContainerWidget(
                 controller: _passwordController,
                 hintText: "Password",
                 isPasswordField: true,
+                validator: (val) => val!.isEmpty ? 'Enter an email' : null,
               ),
               SizedBox(height: 30),
               GestureDetector(
@@ -115,10 +118,11 @@ class _LoginScreenState extends State<LoginScreen> {
   void _signIn() async {
     String email = _emailController.text;
     String password = _passwordController.text;
+    String error = '';
 
     User? user = await _auth.signInWithEmailAndPassword(email, password);
 
-    if (user != null) {
+    if (user != null && _formKey.currentState!.validate()) {
       print("User successfully LOGGED IN");
       // Navigator.pushNamed(context, "/home");
       Navigator.push(
