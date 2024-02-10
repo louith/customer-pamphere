@@ -1,34 +1,6 @@
 import 'package:customer/components/constants.dart';
 import 'package:flutter/material.dart';
 
-// class FormContainerWidget extends StatefulWidget {
-//   final TextEditingController? controller;
-//   final Key? fieldKey;
-//   final bool? isPasswordField;
-//   final String? hintText;
-//   final String? labelText;
-//   final String? helperText;
-//   final FormFieldSetter<String>? onSaved;
-//   final FormFieldValidator<String>? validator;
-//   final ValueChanged<String?>? onFieldSubmitted;
-//   final TextInputType? inputType;
-
-//   const FormContainerWidget(
-//       {this.controller,
-//       this.fieldKey,
-//       this.isPasswordField,
-//       this.hintText,
-//       this.labelText,
-//       this.helperText,
-//       this.onSaved,
-//       this.validator,
-//       this.onFieldSubmitted,
-//       this.inputType});
-
-//       @override
-//       _FormContainerWidgetState createState() =>
-// }
-
 class FormContainerWidget extends StatefulWidget {
   const FormContainerWidget({
     super.key,
@@ -64,7 +36,6 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    IconData? icon;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -72,7 +43,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         borderRadius: BorderRadius.circular(90),
       ),
       child: TextFormField(
-        style: TextStyle(
+        style: const TextStyle(
             color: kPrimaryColor,
             fontSize: 13,
             fontFamily: 'Inter',
@@ -85,17 +56,12 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         onSaved: widget.onSaved,
         validator: widget.validator,
         onFieldSubmitted: widget.onFieldSubmitted,
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
             border: InputBorder.none,
             filled: true,
             hintText: widget.hintText,
-            // prefixIcon: Icon(icon),
-            // prefixIconColor: kPrimaryColor,
-            // prefixIcon: Padding(
-            //     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-            //     child: Icon(icon)),
-            hintStyle: TextStyle(color: const Color.fromARGB(115, 83, 73, 73)),
-            suffixIcon: new GestureDetector(
+            hintStyle: const TextStyle(color: Color.fromARGB(115, 83, 73, 73)),
+            suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
                   _obscureText = !_obscureText;
@@ -108,7 +74,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
                           ? kPrimaryColor
                           : kPrimaryLightColor,
                     )
-                  : Text(""),
+                  : const Text(""),
             )),
       ),
     );

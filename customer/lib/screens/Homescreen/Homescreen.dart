@@ -33,12 +33,12 @@ class CustHome extends StatefulWidget {
 class _CustHomeState extends State<CustHome> {
   // int indexhome = 0;
   final screenshome = [
-    HairFreelancers(),
-    MakeupFreelancers(),
-    SpaFreelancers(),
-    NailsFreelancers(),
-    LashesFreelancers(),
-    FaceandSkinFreelancers(),
+    const HairFreelancers(),
+    const MakeupFreelancers(),
+    const SpaFreelancers(),
+    const NailsFreelancers(),
+    const LashesFreelancers(),
+    const FaceandSkinFreelancers(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -47,13 +47,13 @@ class _CustHomeState extends State<CustHome> {
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
-                icon: Icon(Icons.menu),
+                icon: const Icon(Icons.menu),
                 onPressed: () {
                   print('putangina filter nih');
                 }),
             toolbarHeight: 90,
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(48),
+              preferredSize: const Size.fromHeight(48),
               child: TabBar(tabs: [
                 Tab(
                   text: 'Hair',
@@ -117,11 +117,11 @@ class _CustHomeState extends State<CustHome> {
               },
               decoration: InputDecoration(
                 hintText: 'Search',
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)),
                 ),
                 prefixIcon: IconButton(
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                   onPressed: () {
                     print('icon is pressed');
                   },
@@ -184,7 +184,8 @@ class _ServiceCategoriesState extends State<ServiceCategories> {
             NavigationBarTheme(
       data: NavigationBarThemeData(
           indicatorColor: kPrimaryColor,
-          labelTextStyle: MaterialStateProperty.all(TextStyle(fontSize: 14))
+          labelTextStyle:
+              MaterialStateProperty.all(const TextStyle(fontSize: 14))
           //u can add text style shits din
           //u can add bg color din
           ),

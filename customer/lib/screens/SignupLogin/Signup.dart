@@ -154,102 +154,104 @@ class _CustSignUpState extends State<CustSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Text("Sign Up",
-              //     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-              SignUpScreenTopImage(),
-              SizedBox(height: 30),
-              Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      FormContainerWidget(
-                        controller: _usernameController,
-                        hintText: "Username",
-                        isPasswordField: false,
-                        validator: (val) =>
-                            val!.isEmpty ? 'Enter a username' : null,
-                      ),
-                      SizedBox(height: 10),
-                      FormContainerWidget(
-                        controller: _emailController,
-                        hintText: "Email",
-                        icon: Icons.email_outlined,
-                        isPasswordField: false,
-                        validator: (val) =>
-                            val!.isEmpty ? 'Enter an email' : null,
-                      ),
-                      SizedBox(height: 10),
-                      FormContainerWidget(
-                        controller: _passwordController,
-                        hintText: "Password",
-                        isPasswordField: true,
-                        icon: Icons.password,
-                        validator: (val) => val!.length < 6
-                            ? 'Create a password with at least 6 characters'
-                            : null,
-                      ),
-                    ],
-                  )),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Text("Sign Up",
+                //     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                SignUpScreenTopImage(),
+                SizedBox(height: 30),
+                Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        FormContainerWidget(
+                          controller: _usernameController,
+                          hintText: "Username",
+                          isPasswordField: false,
+                          validator: (val) =>
+                              val!.isEmpty ? 'Enter a username' : null,
+                        ),
+                        SizedBox(height: 10),
+                        FormContainerWidget(
+                          controller: _emailController,
+                          hintText: "Email",
+                          icon: Icons.email_outlined,
+                          isPasswordField: false,
+                          validator: (val) =>
+                              val!.isEmpty ? 'Enter an email' : null,
+                        ),
+                        SizedBox(height: 10),
+                        FormContainerWidget(
+                          controller: _passwordController,
+                          hintText: "Password",
+                          isPasswordField: true,
+                          icon: Icons.password,
+                          validator: (val) => val!.length < 6
+                              ? 'Create a password with at least 6 characters'
+                              : null,
+                        ),
+                      ],
+                    )),
 
-              SizedBox(height: 30),
-              GestureDetector(
-                onTap: _signUp,
-                // () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: ((context) => CustHome())));
-                // },
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(90),
-                  ),
-                  child: Center(
-                      child: Text(
-                    "SIGN UP",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
+                SizedBox(height: 30),
+                GestureDetector(
+                  onTap: _signUp,
+                  // () {
+                  //   Navigator.push(context,
+                  //       MaterialPageRoute(builder: ((context) => CustHome())));
+                  // },
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(90),
                     ),
-                  )),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Already have an account?"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => LoginScreen())));
-                    },
-                    child: Text(
-                      "Log in",
+                    child: Center(
+                        child: Text(
+                      "SIGN UP",
                       style: TextStyle(
-                          color: kPrimaryColor, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Already have an account?"),
+                    SizedBox(
+                      width: 5,
                     ),
-                  )
-                ],
-              )
-            ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => LoginScreen())));
+                      },
+                      child: Text(
+                        "Log in",
+                        style: TextStyle(
+                            color: kPrimaryColor, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

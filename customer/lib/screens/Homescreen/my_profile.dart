@@ -1,7 +1,7 @@
 import 'package:customer/components/constants.dart';
-import 'package:customer/components/strings.dart';
 import 'package:customer/components/widgets.dart';
 import 'package:customer/screens/customerProfile/custprofile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -13,6 +13,24 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  User? _user;
+  String currUserEmail = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      setState(() {
+        _user = user;
+        currUserEmail = _user!.email!;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +59,12 @@ class _MyProfileState extends State<MyProfile> {
                 height: 10,
               ),
               Text(
-                'Customer Name',
+                // _user != null ? _user!.uid : 'No user found',
+                'NAME',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               Text(
-                'cust@gmail.com',
+                _user != null ? currUserEmail : 'No user found',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(

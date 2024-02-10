@@ -2,7 +2,6 @@ import 'package:customer/components/constants.dart';
 import 'package:customer/screens/Homescreen/Homescreen.dart';
 // import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
 import 'package:customer/screens/Homescreen/my_profile.dart';
-import 'package:customer/screens/customerProfile/custprofile.dart';
 import 'package:flutter/material.dart';
 
 class CustMainScreen extends StatefulWidget {
@@ -24,7 +23,7 @@ class _CustMainScreenState extends State<CustMainScreen> {
             height: 80,
             indicatorColor: kPrimaryColor,
             labelTextStyle: MaterialStateProperty.all(
-                TextStyle(fontSize: 14, fontWeight: FontWeight.w500))
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w500))
             //u can add text style shits din
             //u can add bg color din
             ),
@@ -33,7 +32,7 @@ class _CustMainScreenState extends State<CustMainScreen> {
             onDestinationSelected: (index) =>
                 setState(() => this.index = index),
             backgroundColor: kPrimaryLightColor,
-            destinations: [
+            destinations: const [
               NavigationDestination(
                 icon: Icon(
                   Icons.home_outlined,

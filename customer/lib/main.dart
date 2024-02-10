@@ -1,12 +1,6 @@
 import 'package:customer/components/constants.dart';
-import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
-import 'package:customer/screens/Homescreen/Homescreen.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
-import 'package:customer/screens/Homescreen/my_profile.dart';
-import 'package:customer/screens/SignupLogin/Login.dart';
-import 'package:customer/screens/SignupLogin/Signup.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
-import 'package:customer/screens/customerProfile/custprofile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -61,8 +55,8 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide.none),
           ),
         ),
-        home: const CustWelcome());
-    // home: CustMainScreen());
+        // home: const CustWelcome());
+        home: CustMainScreen());
   }
 }
 

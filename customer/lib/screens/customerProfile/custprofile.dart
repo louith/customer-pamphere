@@ -2,12 +2,9 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/components/form_container_widget.dart';
 import 'package:customer/components/constants.dart';
-import 'package:customer/components/widgets.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/Homescreen/my_profile.dart';
-import 'package:customer/screens/SignupLogin/Login.dart';
 import 'package:customer/screens/customerProfile/components/user_model.dart';
-import 'package:customer/screens/customerProfile/components/user_repository.dart';
 import 'package:customer/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,12 +28,12 @@ class _AfterSignupState extends State<AfterSignup> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => MyProfile())));
               },
-              icon: Icon(Icons.arrow_back)),
-          title: Text(
+              icon: const Icon(Icons.arrow_back)),
+          title: const Text(
             'My Profile',
           ),
         ),
-        body: CustProfile());
+        body: const CustProfile());
   }
 }
 
@@ -51,18 +48,18 @@ class _CustProfileState extends State<CustProfile> {
   final FirebaseAuthService _auth = FirebaseAuthService();
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _firstname = TextEditingController();
-  TextEditingController _middlename = TextEditingController();
-  TextEditingController _lastname = TextEditingController();
-  TextEditingController _gender = TextEditingController();
-  TextEditingController _age = TextEditingController();
-  TextEditingController _phonenum = TextEditingController();
-  TextEditingController _province = TextEditingController();
-  TextEditingController _city = TextEditingController();
-  TextEditingController _brgy = TextEditingController();
-  TextEditingController _extaddress = TextEditingController();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _username = TextEditingController();
+  final TextEditingController _firstname = TextEditingController();
+  final TextEditingController _middlename = TextEditingController();
+  final TextEditingController _lastname = TextEditingController();
+  final TextEditingController _gender = TextEditingController();
+  final TextEditingController _age = TextEditingController();
+  final TextEditingController _phonenum = TextEditingController();
+  final TextEditingController _province = TextEditingController();
+  final TextEditingController _city = TextEditingController();
+  final TextEditingController _brgy = TextEditingController();
+  final TextEditingController _extaddress = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _username = TextEditingController();
 
   @override
   void dispose() {

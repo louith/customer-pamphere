@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-List<dynamic> plaindocIds = [];
+List<String> plaindocIds = [];
 
 // gets those docs that matches the query & conditionals
 Future<void> getPlainDocIds() async {
