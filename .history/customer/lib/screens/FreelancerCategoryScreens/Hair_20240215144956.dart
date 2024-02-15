@@ -1,36 +1,45 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/components/getVerified.dart';
 import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:flutter/material.dart';
 
 final db = FirebaseFirestore.instance;
+//document IDs based off selected query
 
-class SpaWorkerCard {
+//Strings to assign to text widgets (fieldnames)
+//freelancers & salons
+class WorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
 
-  SpaWorkerCard(
+  WorkerCard(
       {required this.name, required this.address, required this.subcategories});
 }
 
-class SpaFreelancers extends StatefulWidget {
-  const SpaFreelancers({super.key});
+// List<dynamic> hairSubCats = [];
+// List<dynamic> hairList = [];
+
+class HairFreelancers extends StatefulWidget {
+  const HairFreelancers({super.key});
 
   @override
-  State<SpaFreelancers> createState() => _SpaFreelancers();
+  State<HairFreelancers> createState() => _HairFreelancersState();
 }
 
-class _SpaFreelancers extends State<SpaFreelancers> {
-  Future<SpaWorkerCard?> getSpaWorkerCard(String plainID) async {
-    final DocumentSnapshot spa = await db
+class _HairFreelancersState extends State<HairFreelancers> {
+  Future<WorkerCard?> getWorkerCard(String plainID) async {
+    final DocumentSnapshot hairs = await db
         .collection('users')
         .doc(plainID)
         .collection('categories')
-        .doc('Spa')
+        .doc('Hair')
         .get();
 
-    if (!spa.exists) {
+    if (!hairs.exists) {
       return null;
     }
 
@@ -40,38 +49,46 @@ class _SpaFreelancers extends State<SpaFreelancers> {
     Map<String, dynamic> profileMap = profile.data() as Map<String, dynamic>;
 
     //gets hair subcollection document
-    Map<String, dynamic> spaMap = spa.data() as Map<String, dynamic>;
+    Map<String, dynamic> hairsMap = hairs.data() as Map<String, dynamic>;
 
     //adds subcategories to a list
-    List<String> spaSubCats = spaMap.keys.toList();
+    List<String> hairSubCats = hairsMap.keys.toList();
 
-    return SpaWorkerCard(
+    return WorkerCard(
         name: profileMap['name'],
         address: profileMap['address'],
-        subcategories: spaSubCats);
+        subcategories: hairSubCats);
   }
 
-  Future<List<SpaWorkerCard>> getSpa() async {
-    List<Future<SpaWorkerCard?>> futures = [];
+  Future<List<WorkerCard>> getHairs() async {
+    List<Future<WorkerCard?>> futures = [];
     for (var plainID in (await getPlainDocIds())) {
-      futures.add(getSpaWorkerCard(plainID));
+      futures.add(getWorkerCard(plainID));
     }
-    List<SpaWorkerCard?> spaWorkersWithNull =
-        await Future.wait<SpaWorkerCard?>(futures);
-    return spaWorkersWithNull.whereType<SpaWorkerCard>().toList();
+    List<WorkerCard?> hairWorkersWithNull =
+        await Future.wait<WorkerCard?>(futures);
+    return hairWorkersWithNull.whereType<WorkerCard>().toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // getPlainDocIds();
+    // getHairs();
+    // tryHairs();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<SpaWorkerCard>>(
-      stream: Stream.fromFuture(getSpa()), // Convert the Future to a Stream
+    return StreamBuilder<List<WorkerCard>>(
+      stream: Stream.fromFuture(getHairs()), // Convert the Future to a Stream
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Text('loading');
         } else {
-          List<SpaWorkerCard> spaWorkers = snapshot.data!;
+          List<WorkerCard> hairWorkers = snapshot.data!;
           return ListView.builder(
-              itemCount: spaWorkers.length,
+              itemCount: hairWorkers.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
@@ -89,13 +106,13 @@ class _SpaFreelancers extends State<SpaFreelancers> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          spaWorkers[index].name,
+                          hairWorkers[index].name,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         SubCategoriesRow(
-                            itemList: spaWorkers[index].subcategories),
-                        Text(spaWorkers[index].address,
+                            itemList: hairWorkers[index].subcategories),
+                        Text(hairWorkers[index].address,
                             style: const TextStyle(fontWeight: FontWeight.w300))
                       ],
                     ),

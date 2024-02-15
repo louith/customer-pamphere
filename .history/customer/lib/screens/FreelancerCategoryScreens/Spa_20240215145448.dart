@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/components/getVerified.dart';
-import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:flutter/material.dart';
 
 final db = FirebaseFirestore.instance;
@@ -112,31 +111,6 @@ class _SpaFreelancers extends State<SpaFreelancers> {
               });
         }
       },
-    );
-  }
-}
-
-class SubCategoriesRow extends StatelessWidget {
-  const SubCategoriesRow({super.key, required this.itemList});
-
-  final List<dynamic> itemList;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          itemList.length,
-          (index) => Container(
-            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-            decoration: BoxDecoration(
-                color: Colors.purple[100],
-                borderRadius: BorderRadius.circular(100)),
-            child: Text(itemList[index]),
-          ),
-        ),
-      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:customer/components/constants.dart';
-import 'package:customer/screens/FreelancerCategoryScreens/Wax.dart';
+import 'package:customer/screens/FreelancerCategoryScreens/FaceandSkin.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/Hair.dart';
 import 'package:customer/screens/Homescreen/components/Location.dart';
 // import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
@@ -39,7 +39,7 @@ class _CustHomeState extends State<CustHome> {
     const SpaFreelancers(),
     const NailsFreelancers(),
     const LashesFreelancers(),
-    const WaxWorkers(),
+    const FaceandSkinFreelancers(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _CustHomeState extends State<CustHome> {
             toolbarHeight: 90,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(48),
-              child: TabBar(indicatorColor: Colors.purple[100], tabs: [
+              child: TabBar(tabs: [
                 Tab(
                   text: 'Hair',
                   icon: SvgPicture.asset(

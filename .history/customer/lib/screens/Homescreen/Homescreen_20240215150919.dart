@@ -56,7 +56,7 @@ class _CustHomeState extends State<CustHome> {
             toolbarHeight: 90,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(48),
-              child: TabBar(indicatorColor: Colors.purple[100], tabs: [
+              child: TabBar(indicatorColor: kPrimaryLightColor, tabs: [
                 Tab(
                   text: 'Hair',
                   icon: SvgPicture.asset(
