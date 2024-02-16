@@ -9,9 +9,13 @@ class WaxWorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
+  final String id;
 
   WaxWorkerCard(
-      {required this.name, required this.address, required this.subcategories});
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.subcategories});
 }
 
 class WaxWorkers extends StatefulWidget {
@@ -46,6 +50,7 @@ class _WaxWorkersState extends State<WaxWorkers> {
     List<String> waxSubCats = waxMap.keys.toList();
 
     return WaxWorkerCard(
+        id: plainID.toString(),
         name: profileMap['name'],
         address: profileMap['address'],
         subcategories: waxSubCats);
@@ -104,7 +109,8 @@ class _WaxWorkersState extends State<WaxWorkers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndivWorkerProfile()),
+                            builder: (context) => IndivWorkerProfile(
+                                userID: waxWorkers[index].id.toString())),
                       );
                     },
                   ),

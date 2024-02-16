@@ -1,149 +1,97 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/components/bottomNav.dart';
 import 'package:customer/components/constants.dart';
+import 'package:customer/screens/Booking/bookingScreen.dart';
+import 'package:customer/screens/Chat/indivChat.dart';
+import 'package:customer/screens/ServicesOffered/servicesList.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:line_icons/line_icon.dart';
 
-class IndivWorkerProfile extends StatefulWidget {
-  const IndivWorkerProfile({super.key});
+class IndivWorkerProfile extends StatelessWidget {
+  final String userID;
+  // int index = 0;
+  final screens = [ServicesList(), IndivChat(), BookingScreen()];
 
-  @override
-  State<IndivWorkerProfile> createState() => _IndivWorkerProfileState();
-}
+  IndivWorkerProfile({super.key, required this.userID});
 
-class _IndivWorkerProfileState extends State<IndivWorkerProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //       icon: const Icon(Icons.menu),
-      //       onPressed: () {
-      //         print('putangina filter nih');
-      //       }),
-      //   toolbarHeight: 90,
-      //   bottom: PreferredSize(
-      //     preferredSize: const Size.fromHeight(48),
-      //     child: TabBar(tabs: [
-      //       Tab(
-      //         text: 'Hair',
-      //         icon: SvgPicture.asset(
-      //           'assets/svg/hair.svg',
-      //           width: 24,
-      //           height: 24,
-      //           color: kPrimaryLightColor,
-      //         ),
-      //       ),
-      //       Tab(
-      //         text: 'Makeup',
-      //         icon: SvgPicture.asset(
-      //           'assets/svg/makeup.svg',
-      //           width: 24,
-      //           height: 24,
-      //           color: kPrimaryLightColor,
-      //         ),
-      //       ),
-      //       Tab(
-      //         text: 'Body',
-      //         icon: SvgPicture.asset(
-      //           'assets/svg/spa.svg',
-      //           width: 24,
-      //           height: 24,
-      //           color: kPrimaryLightColor,
-      //         ),
-      //       ),
-      //       Tab(
-      //         text: 'Nails',
-      //         icon: SvgPicture.asset(
-      //           'assets/svg/nails.svg',
-      //           width: 24,
-      //           height: 24,
-      //           color: kPrimaryLightColor,
-      //         ),
-      //       ),
-      //       Tab(
-      //         text: 'Lashes',
-      //         icon: SvgPicture.asset(
-      //           'assets/svg/hair.svg',
-      //           width: 24,
-      //           height: 24,
-      //           color: kPrimaryLightColor,
-      //         ),
-      //       ),
-      //       Tab(
-      //         text: 'Wax',
-      //         icon: SvgPicture.asset(
-      //           'assets/svg/face & skin.svg',
-      //           width: 24,
-      //           height: 24,
-      //           color: kPrimaryLightColor,
-      //         ),
-      //       ),
-      //     ]),
-      //   ),
-      //   title: TextField(
-      //     onChanged: (text) {
-      //       //perform ur search here
-      //     },
-      //     decoration: InputDecoration(
-      //       hintText: 'Search',
-      //       border: const OutlineInputBorder(
-      //         borderRadius: BorderRadius.all(Radius.circular(25.0)),
-      //       ),
-      //       prefixIcon: IconButton(
-      //         icon: const Icon(Icons.search),
-      //         onPressed: () {
-      //           print('icon is pressed');
-      //         },
-      //       ),
-      //     ),
-      //   ),
-      //   backgroundColor: kPrimaryColor,
-      // ),
-      appBar: AppBar(
-        backgroundColor: kPrimaryColor,
-        leading: Icon(Icons.arrow_back_ios),
-      ),
-      body: Container(
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/profile_picture.jpg'),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'John Doe',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Flutter Developer',
-              style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-            SizedBox(height: 20),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text('john.doe@example.com'),
-            ),
-            ListTile(
-              leading: Icon(Icons.phone),
-              title: Text('+1234567890'),
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on),
-              title: Text('New York, USA'),
-            ),
-          ],
-        ),
-      ),
-      // bottomNavigationBar: BottomNavBar(),
-    );
+        appBar: AppBar(
+            backgroundColor: kPrimaryColor,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(Icons.arrow_back_ios))),
+        body: FutureBuilder(
+            future: FirebaseFirestore.instance
+                .collection('users')
+                .doc(userID)
+                .get(),
+            builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
+
+              if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              }
+
+              final plainWorkerdata =
+                  snapshot.data!.data() as Map<String, dynamic>;
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/suzy.jpg',
+                        width: 100,
+                        height: 100,
+                      ),
+                      Column(
+                        children: [
+                          Text('Name: ${plainWorkerdata['name']}'),
+                          Text('Address: ${plainWorkerdata['address']}')
+                        ],
+                      ),
+                    ],
+                  ),
+                  Text('Feedbacks section below')
+                ],
+              );
+            }),
+        bottomNavigationBar: NavigationBarTheme(
+          data: NavigationBarThemeData(
+              height: 80,
+              indicatorColor: kPrimaryColor,
+              labelTextStyle: MaterialStateProperty.all(
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w500))),
+          child: NavigationBar(
+              // selectedIndex: index,
+              onDestinationSelected: (index) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => screens[index])));
+              },
+              destinations: const [
+                NavigationDestination(
+                    icon: LineIcon.servicestack(),
+                    label: 'Services',
+                    selectedIcon:
+                        LineIcon.servicestack(color: kLoysPrimaryIconColor)),
+                NavigationDestination(
+                    icon: Icon(Icons.chat_outlined),
+                    label: 'Chat Now',
+                    selectedIcon:
+                        Icon(Icons.chat, color: kLoysPrimaryIconColor)),
+                NavigationDestination(
+                    icon: LineIcon.calendarPlus(),
+                    label: 'Book Now',
+                    selectedIcon:
+                        LineIcon.calendarPlusAlt(color: kLoysPrimaryIconColor)),
+              ]),
+        ));
   }
 }

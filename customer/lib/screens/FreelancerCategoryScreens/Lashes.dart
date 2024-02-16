@@ -9,9 +9,13 @@ class LashesWorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
+  final String id;
 
   LashesWorkerCard(
-      {required this.name, required this.address, required this.subcategories});
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.subcategories});
 }
 
 class LashesFreelancers extends StatefulWidget {
@@ -46,6 +50,7 @@ class _LashesFreelancersState extends State<LashesFreelancers> {
     List<String> lashesSubCats = lashesMap.keys.toList();
 
     return LashesWorkerCard(
+        id: plainID.toString(),
         name: profileMap['name'],
         address: profileMap['address'],
         subcategories: lashesSubCats);
@@ -104,7 +109,8 @@ class _LashesFreelancersState extends State<LashesFreelancers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndivWorkerProfile()),
+                            builder: (context) => IndivWorkerProfile(
+                                userID: lashWorkers[index].id.toString())),
                       );
                     },
                   ),

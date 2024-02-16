@@ -9,9 +9,13 @@ class NailsWorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
+  final String id;
 
   NailsWorkerCard(
-      {required this.name, required this.address, required this.subcategories});
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.subcategories});
 }
 
 class NailsFreelancers extends StatefulWidget {
@@ -46,6 +50,7 @@ class _NailsFreelancersState extends State<NailsFreelancers> {
     List<String> nailSubCats = nailsMap.keys.toList();
 
     return NailsWorkerCard(
+        id: plainID.toString(),
         name: profileMap['name'],
         address: profileMap['address'],
         subcategories: nailSubCats);
@@ -104,7 +109,8 @@ class _NailsFreelancersState extends State<NailsFreelancers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndivWorkerProfile()),
+                            builder: (context) => IndivWorkerProfile(
+                                userID: nailsWorkers[index].id.toString())),
                       );
                     },
                   ),

@@ -12,9 +12,13 @@ class WorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
+  final String id;
 
   WorkerCard(
-      {required this.name, required this.address, required this.subcategories});
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.subcategories});
 }
 
 // List<dynamic> hairSubCats = [];
@@ -52,6 +56,7 @@ class _HairFreelancersState extends State<HairFreelancers> {
     List<String> hairSubCats = hairsMap.keys.toList();
 
     return WorkerCard(
+        id: plainID.toString(),
         name: profileMap['name'],
         address: profileMap['address'],
         subcategories: hairSubCats);
@@ -110,7 +115,9 @@ class _HairFreelancersState extends State<HairFreelancers> {
                         SubCategoriesRow(
                             itemList: hairWorkers[index].subcategories),
                         Text(hairWorkers[index].address,
-                            style: const TextStyle(fontWeight: FontWeight.w300))
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w300)),
+                        // Text(hairWorkers[index].id.toString())
                       ],
                     ),
                     shape: RoundedRectangleBorder(),
@@ -118,7 +125,8 @@ class _HairFreelancersState extends State<HairFreelancers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndivWorkerProfile()),
+                            builder: (context) => IndivWorkerProfile(
+                                userID: hairWorkers[index].id.toString())),
                       );
                     },
                   ),

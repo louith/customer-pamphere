@@ -9,9 +9,13 @@ class SpaWorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
+  final String id;
 
   SpaWorkerCard(
-      {required this.name, required this.address, required this.subcategories});
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.subcategories});
 }
 
 class SpaFreelancers extends StatefulWidget {
@@ -46,6 +50,7 @@ class _SpaFreelancers extends State<SpaFreelancers> {
     List<String> spaSubCats = spaMap.keys.toList();
 
     return SpaWorkerCard(
+        id: plainID.toString(),
         name: profileMap['name'],
         address: profileMap['address'],
         subcategories: spaSubCats);
@@ -104,7 +109,8 @@ class _SpaFreelancers extends State<SpaFreelancers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndivWorkerProfile()),
+                            builder: (context) => IndivWorkerProfile(
+                                userID: spaWorkers[index].id.toString())),
                       );
                     },
                   ),

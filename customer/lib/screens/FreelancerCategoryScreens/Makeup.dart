@@ -10,9 +10,13 @@ class MakeupWorkerCard {
   final String name;
   final String address;
   final List<String> subcategories;
+  final String id;
 
   MakeupWorkerCard(
-      {required this.name, required this.address, required this.subcategories});
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.subcategories});
 }
 
 class MakeupFreelancers extends StatefulWidget {
@@ -47,6 +51,7 @@ class _MakeupFreelancersState extends State<MakeupFreelancers> {
     List<String> makeupSubCats = makeupMap.keys.toList();
 
     return MakeupWorkerCard(
+        id: plainID.toString(),
         name: profileMap['name'],
         address: profileMap['address'],
         subcategories: makeupSubCats);
@@ -113,7 +118,8 @@ class _MakeupFreelancersState extends State<MakeupFreelancers> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const IndivWorkerProfile()),
+                            builder: (context) => IndivWorkerProfile(
+                                userID: makeupWorkers[index].id.toString())),
                       );
                     },
                   ),

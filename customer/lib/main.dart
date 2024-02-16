@@ -1,6 +1,7 @@
 import 'package:customer/components/constants.dart';
 import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
+import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +56,15 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide.none),
           ),
         ),
+
+        //legit first page
         // home: const CustWelcome());
+
+        //main screen/home
         home: CustMainScreen());
+
+    //current screen gina edit ko
+    // home: const IndivWorkerProfile());
   }
 }
 

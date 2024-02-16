@@ -56,62 +56,65 @@ class _CustHomeState extends State<CustHome> {
             toolbarHeight: 90,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(48),
-              child: TabBar(indicatorColor: Colors.purple[100], tabs: [
-                Tab(
-                  text: 'Hair',
-                  icon: SvgPicture.asset(
-                    'assets/svg/hair.svg',
-                    width: 24,
-                    height: 24,
-                    color: kPrimaryLightColor,
-                  ),
-                ),
-                Tab(
-                  text: 'Makeup',
-                  icon: SvgPicture.asset(
-                    'assets/svg/makeup.svg',
-                    width: 24,
-                    height: 24,
-                    color: kPrimaryLightColor,
-                  ),
-                ),
-                Tab(
-                  text: 'Spa',
-                  icon: SvgPicture.asset(
-                    'assets/svg/spa.svg',
-                    width: 24,
-                    height: 24,
-                    color: kPrimaryLightColor,
-                  ),
-                ),
-                Tab(
-                  text: 'Nails',
-                  icon: SvgPicture.asset(
-                    'assets/svg/nails.svg',
-                    width: 24,
-                    height: 24,
-                    color: kPrimaryLightColor,
-                  ),
-                ),
-                Tab(
-                  text: 'Lashes',
-                  icon: SvgPicture.asset(
-                    'assets/svg/hair.svg',
-                    width: 24,
-                    height: 24,
-                    color: kPrimaryLightColor,
-                  ),
-                ),
-                Tab(
-                  text: 'Wax',
-                  icon: SvgPicture.asset(
-                    'assets/svg/face & skin.svg',
-                    width: 24,
-                    height: 24,
-                    color: kPrimaryLightColor,
-                  ),
-                ),
-              ]),
+              child: TabBar(
+                  indicatorColor: kPrimaryLightColor,
+                  indicatorWeight: 5,
+                  tabs: [
+                    Tab(
+                      text: 'Hair',
+                      icon: SvgPicture.asset(
+                        'assets/svg/hair.svg',
+                        width: 24,
+                        height: 24,
+                        color: kPrimaryLightColor,
+                      ),
+                    ),
+                    Tab(
+                      text: 'Makeup',
+                      icon: SvgPicture.asset(
+                        'assets/svg/makeup.svg',
+                        width: 24,
+                        height: 24,
+                        color: kPrimaryLightColor,
+                      ),
+                    ),
+                    Tab(
+                      text: 'Spa',
+                      icon: SvgPicture.asset(
+                        'assets/svg/spa.svg',
+                        width: 24,
+                        height: 24,
+                        color: kPrimaryLightColor,
+                      ),
+                    ),
+                    Tab(
+                      text: 'Nails',
+                      icon: SvgPicture.asset(
+                        'assets/svg/nails.svg',
+                        width: 24,
+                        height: 24,
+                        color: kPrimaryLightColor,
+                      ),
+                    ),
+                    Tab(
+                      text: 'Lashes',
+                      icon: SvgPicture.asset(
+                        'assets/svg/hair.svg',
+                        width: 24,
+                        height: 24,
+                        color: kPrimaryLightColor,
+                      ),
+                    ),
+                    Tab(
+                      text: 'Wax',
+                      icon: SvgPicture.asset(
+                        'assets/svg/face & skin.svg',
+                        width: 24,
+                        height: 24,
+                        color: kPrimaryLightColor,
+                      ),
+                    ),
+                  ]),
             ),
             title: TextField(
               onChanged: (text) {
