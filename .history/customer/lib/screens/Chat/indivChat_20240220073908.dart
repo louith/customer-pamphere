@@ -3,7 +3,8 @@ import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:flutter/material.dart';
 
 class IndivChat extends StatefulWidget {
-  const IndivChat({super.key});
+  final WorkerDetailsCard card;
+  const IndivChat(this.card, super.key });
 
   @override
   State<IndivChat> createState() => _IndivChatState();

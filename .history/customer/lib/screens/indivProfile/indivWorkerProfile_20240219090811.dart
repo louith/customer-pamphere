@@ -132,15 +132,13 @@ class IndivWorkerProfile extends StatelessWidget {
                                       Icon(Icons.location_on_outlined),
                                       Text(
                                         plainWorkerdata.address,
+                                        style: TextStyle(fontSize: 13),
                                       )
                                     ]),
                                 Wrap(children: [
                                   Icon(Icons.work_outline),
                                   Text('Works at')
-                                ]),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text('More Information'))
+                                ])
                               ],
                             ),
                           ),

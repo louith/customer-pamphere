@@ -1,8 +1,8 @@
 import 'package:customer/components/constants.dart';
-import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:flutter/material.dart';
 
 class IndivChat extends StatefulWidget {
+  // final String userID;
   const IndivChat({super.key});
 
   @override

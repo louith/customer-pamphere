@@ -120,7 +120,7 @@ class IndivWorkerProfile extends StatelessWidget {
                                   plainWorkerdata.name,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                    fontSize: 16,
                                   ),
                                 ),
                                 CategoriesRow(
@@ -132,15 +132,13 @@ class IndivWorkerProfile extends StatelessWidget {
                                       Icon(Icons.location_on_outlined),
                                       Text(
                                         plainWorkerdata.address,
+                                        style: TextStyle(fontSize: 12),
                                       )
                                     ]),
                                 Wrap(children: [
                                   Icon(Icons.work_outline),
                                   Text('Works at')
-                                ]),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text('More Information'))
+                                ])
                               ],
                             ),
                           ),

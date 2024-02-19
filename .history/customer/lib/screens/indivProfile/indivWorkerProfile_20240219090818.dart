@@ -137,10 +137,7 @@ class IndivWorkerProfile extends StatelessWidget {
                                 Wrap(children: [
                                   Icon(Icons.work_outline),
                                   Text('Works at')
-                                ]),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text('More Information'))
+                                ])
                               ],
                             ),
                           ),

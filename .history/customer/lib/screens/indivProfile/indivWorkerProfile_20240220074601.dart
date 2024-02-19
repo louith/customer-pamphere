@@ -31,7 +31,7 @@ class WorkerDetailsCard {
 class IndivWorkerProfile extends StatelessWidget {
   final String userID;
   // int index = 0;
-  final screens = [ServicesList(), IndivChat(), BookingScreen()];
+  final screens = [ServicesList(), IndivChat(userID), BookingScreen()];
 
   IndivWorkerProfile({super.key, required this.userID});
   Future<WorkerDetailsCard> getWorkerDetailsCard(String id) async {

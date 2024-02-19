@@ -130,17 +130,16 @@ class IndivWorkerProfile extends StatelessWidget {
                                         WrapCrossAlignment.start,
                                     children: [
                                       Icon(Icons.location_on_outlined),
-                                      Text(
-                                        plainWorkerdata.address,
-                                      )
+                                      Text(plainWorkerdata.address)
                                     ]),
-                                Wrap(children: [
-                                  Icon(Icons.work_outline),
-                                  Text('Works at')
-                                ]),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text('More Information'))
+                                Wrap(
+                                    runAlignment: WrapAlignment.start,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    children: [
+                                      Icon(Icons.work_outline),
+                                      Text('Works at')
+                                    ])
                               ],
                             ),
                           ),
