@@ -118,7 +118,6 @@ class _CustHomeState extends State<CustHome> {
                   ]),
             ),
             title: TextField(
-              controller: searchController,
               onChanged: (text) {
                 //perform ur search here
               },
