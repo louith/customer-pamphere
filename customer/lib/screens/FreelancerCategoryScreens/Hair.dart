@@ -126,7 +126,9 @@ class _HairFreelancersState extends State<HairFreelancers> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => IndivWorkerProfile(
-                                userID: hairWorkers[index].id.toString())),
+                                  userID: hairWorkers[index].id.toString(),
+                                  userName: hairWorkers[index].name.toString(),
+                                )),
                       );
                     },
                   ),

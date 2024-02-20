@@ -30,10 +30,9 @@ class WorkerDetailsCard {
 
 class IndivWorkerProfile extends StatelessWidget {
   final String userID;
+  final String userName;
   // int index = 0;
-  final screens = [ServicesList(), IndivChat(), BookingScreen()];
-
-  IndivWorkerProfile({super.key, required this.userID});
+  IndivWorkerProfile({super.key, required this.userID, required this.userName});
   Future<WorkerDetailsCard> getWorkerDetailsCard(String id) async {
     id = userID;
     //gets user document first layer
@@ -62,6 +61,14 @@ class IndivWorkerProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screens = [
+      ServicesList(),
+      IndivChat(
+        userName: userName,
+      ),
+      BookingScreen()
+    ];
+
     return Scaffold(
         appBar: AppBar(
             backgroundColor: kPrimaryColor,

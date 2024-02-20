@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
         ),
 
         //legit first page
-        // home: const CustWelcome());
+        home: const CustWelcome());
 
-        //main screen/home
-        home: CustMainScreen());
+    //main screen/home
+    // home: CustMainScreen());
 
     //current screen gina edit ko
     // home: const IndivWorkerProfile());

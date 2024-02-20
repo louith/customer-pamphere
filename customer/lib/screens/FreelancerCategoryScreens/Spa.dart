@@ -110,7 +110,9 @@ class _SpaFreelancers extends State<SpaFreelancers> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => IndivWorkerProfile(
-                                userID: spaWorkers[index].id.toString())),
+                                  userID: spaWorkers[index].id.toString(),
+                                  userName: spaWorkers[index].name.toString(),
+                                )),
                       );
                     },
                   ),
