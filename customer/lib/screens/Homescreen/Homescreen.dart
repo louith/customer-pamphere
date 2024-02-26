@@ -5,6 +5,7 @@ import 'package:customer/screens/FreelancerCategoryScreens/Hair.dart';
 import 'package:customer/screens/Homescreen/components/Location.dart';
 // import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
 import 'package:customer/screens/SignupLogin/components/ImagePicker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../FreelancerCategoryScreens/Lashes.dart';
@@ -31,6 +32,7 @@ class CustHome extends StatefulWidget {
 }
 
 class _CustHomeState extends State<CustHome> {
+  User? currentUser = FirebaseAuth.instance.currentUser;
   final TextEditingController searchController = TextEditingController();
   Widget currentScreen = HairFreelancers();
   // int indexhome = 0;
@@ -53,6 +55,7 @@ class _CustHomeState extends State<CustHome> {
                 icon: const Icon(Icons.menu),
                 onPressed: () {
                   print('putangina filter nih');
+                  log(currentUser!.uid);
                 }),
             toolbarHeight: 90,
             bottom: PreferredSize(
