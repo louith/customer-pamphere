@@ -20,7 +20,9 @@ class IndivChat extends StatefulWidget {
 class _IndivChatState extends State<IndivChat> {
   final TextEditingController _messageController = TextEditingController();
   final ChatServices chatServices = ChatServices();
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  String currentUsername = '';
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  User? currentUser = FirebaseAuth.instance.currentUser;
 
   void sendMessage() async {
     if (_messageController.text.isNotEmpty) {
@@ -31,6 +33,26 @@ class _IndivChatState extends State<IndivChat> {
         log('Error sending message $e');
       }
       _messageController.clear();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentuserid();
+  }
+
+  getCurrentuserid() async {
+    try {
+      final docRef =
+          _firebaseFirestore.collection('users').doc(currentUser!.uid);
+      final docSnapshot = await docRef.get();
+      final username = docSnapshot.data()?['Username'];
+      setState(() {
+        currentUsername = username;
+      });
+    } catch (e) {
+      log('Error getting currentuser name of customer: $e');
     }
   }
 
@@ -65,8 +87,7 @@ class _IndivChatState extends State<IndivChat> {
 
   Widget builderMessageList() {
     return StreamBuilder(
-      stream: chatServices.getMessages(
-          widget.userName, _firebaseAuth.currentUser!.email.toString()),
+      stream: chatServices.getMessages(widget.userName, currentUsername),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('Error ${snapshot.error}');
@@ -85,10 +106,9 @@ class _IndivChatState extends State<IndivChat> {
   Widget messageItem(DocumentSnapshot documentSnapshot) {
     Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
 
-    var alignment =
-        (data['senderId'] == _firebaseAuth.currentUser!.email.toString())
-            ? Alignment.centerRight
-            : Alignment.centerLeft;
+    var alignment = (data['senderId'] == currentUsername)
+        ? Alignment.centerRight
+        : Alignment.centerLeft;
 
     return Container(
       alignment: alignment,
