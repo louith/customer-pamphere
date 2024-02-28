@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/components/constants.dart';
@@ -8,6 +9,8 @@ import 'package:customer/screens/Chat/chatBubble.dart';
 import 'package:customer/screens/Chat/chatservices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:badges/badges.dart' as badges;
 
 class IndivChat extends StatefulWidget {
   String userName;
@@ -23,6 +26,10 @@ class _IndivChatState extends State<IndivChat> {
   String currentUsername = '';
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   User? currentUser = FirebaseAuth.instance.currentUser;
+  final ImagePicker picker = ImagePicker();
+  File? image;
+  XFile? imageRef;
+  bool imageAdded = false;
 
   void sendMessage() async {
     if (_messageController.text.isNotEmpty) {
@@ -92,7 +99,8 @@ class _IndivChatState extends State<IndivChat> {
         if (snapshot.hasError) {
           return Text('Error ${snapshot.error}');
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(color: kPrimaryColor));
+          return const Center(
+              child: CircularProgressIndicator(color: kPrimaryColor));
         }
         return ListView(
           children: snapshot.data!.docs
@@ -126,6 +134,26 @@ class _IndivChatState extends State<IndivChat> {
   Widget messageInput() {
     return Row(
       children: [
+        !imageAdded
+            ? Container()
+            : SizedBox.square(
+                dimension: 80,
+                child: badges.Badge(
+                  position: badges.BadgePosition.topEnd(end: 18),
+                  badgeContent: const Text(
+                    '-',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  child: Image.file(image!),
+                  onTap: () {
+                    setState(() {
+                      imageAdded = false;
+                      image = null;
+                      imageRef = null;
+                    });
+                  },
+                ),
+              ),
         Expanded(
             child: TextField(
           controller: _messageController,
@@ -133,12 +161,89 @@ class _IndivChatState extends State<IndivChat> {
           obscureText: false,
         )),
         IconButton(
+            onPressed: () {
+              attachImage();
+            },
+            icon: const Icon(
+              Icons.image,
+              color: kPrimaryColor,
+            )),
+        IconButton(
             onPressed: sendMessage,
             icon: const Icon(
               Icons.send,
               color: kPrimaryColor,
             ))
       ],
+    );
+  }
+
+  Future<dynamic> attachImage() {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: const Text(
+              "Select Image From",
+              style: TextStyle(fontSize: 16),
+            ),
+            content: SizedBox.square(
+              dimension: 80,
+              // height: MediaQuery.of(context).size.height * .20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () async {
+                      Navigator.of(context).pop();
+                      imageRef =
+                          await picker.pickImage(source: ImageSource.camera);
+                      try {
+                        setState(() {
+                          image = File(imageRef!.path);
+                          imageAdded = true;
+                        });
+                        log(image.toString());
+                      } catch (e) {
+                        log('???');
+                      }
+                    },
+                    child: Container(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.camera_alt_rounded),
+                            Text('Camera')
+                          ],
+                        )),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      Navigator.of(context).pop();
+                      imageRef =
+                          await picker.pickImage(source: ImageSource.gallery);
+                      try {
+                        setState(() {
+                          image = File(imageRef!.path);
+                          imageAdded = true;
+                        });
+                        log(image.toString());
+                      } catch (e) {
+                        log('???');
+                      }
+                    },
+                    child: Container(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Icon(Icons.image), Text('Gallery')],
+                        )),
+                  ),
+                ],
+              ),
+            ));
+      },
     );
   }
 }
