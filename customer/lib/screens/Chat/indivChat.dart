@@ -8,6 +8,7 @@ import 'package:customer/components/widgets.dart';
 import 'package:customer/screens/Chat/chatBubble.dart';
 import 'package:customer/screens/Chat/chatservices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:badges/badges.dart' as badges;
@@ -161,21 +162,38 @@ class _IndivChatState extends State<IndivChat> {
           obscureText: false,
         )),
         IconButton(
-            onPressed: () {
-              attachImage();
-            },
+            onPressed: attachImage,
             icon: const Icon(
               Icons.image,
               color: kPrimaryColor,
             )),
         IconButton(
-            onPressed: sendMessage,
+            onPressed: () {
+              log('sending..');
+              sendImage();
+              sendMessage();
+            },
             icon: const Icon(
               Icons.send,
               color: kPrimaryColor,
             ))
       ],
     );
+  }
+
+  void sendImage() async {
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference dirImages =
+        referenceRoot.child('chatImages').child(currentUser!.uid);
+    await dirImages.putFile(image!);
+    String imageUrl = await dirImages.getDownloadURL();
+    chatServices.sendMessage(widget.userName, imageUrl).then((value) {
+      setState(() {
+        imageAdded = false;
+        image = null;
+        imageRef = null;
+      });
+    });
   }
 
   Future<dynamic> attachImage() {
