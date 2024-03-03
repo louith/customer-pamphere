@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:customer/components/constants.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/components/getVerified.dart';
 import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:flutter/material.dart';
@@ -44,15 +45,15 @@ class _HairFreelancersState extends State<HairFreelancers> {
       return null;
     }
 
+    //para makuha tong common info (e.g name, address, etc.)
     final DocumentSnapshot profile =
         await db.collection('users').doc(plainID).get();
-
     Map<String, dynamic> profileMap = profile.data() as Map<String, dynamic>;
 
     //gets hair subcollection document
     Map<String, dynamic> hairsMap = hairs.data() as Map<String, dynamic>;
 
-    //adds subcategories to a list
+    //adds hair fields (as subcategories) to a list
     List<String> hairSubCats = hairsMap.keys.toList();
 
     return WorkerCard(
@@ -75,9 +76,6 @@ class _HairFreelancersState extends State<HairFreelancers> {
   @override
   void initState() {
     super.initState();
-    // getPlainDocIds();
-    // getHairs();
-    // tryHairs();
   }
 
   @override
@@ -86,7 +84,10 @@ class _HairFreelancersState extends State<HairFreelancers> {
       stream: Stream.fromFuture(getHairs()), // Convert the Future to a Stream
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Text('loading');
+          return Center(
+              child: CircularProgressIndicator(
+            color: kPrimaryColor,
+          ));
         } else {
           List<WorkerCard> hairWorkers = snapshot.data!;
           return ListView.builder(

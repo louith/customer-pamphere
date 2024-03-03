@@ -59,6 +59,14 @@ class IndivWorkerProfile extends StatelessWidget {
         categories: cats);
   }
 
+  // TabController tabController;
+  // int selectedIndex = 0;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   tabController = TabController(length: screens.length, vsync: this)
+  // }
+
   @override
   Widget build(BuildContext context) {
     final screens = [
@@ -159,6 +167,11 @@ class IndivWorkerProfile extends StatelessWidget {
                 );
               }),
         ]),
+        // bottomNavigationBar: TabBar(tabs: [
+        //   Tab(text: 'Services List', icon: Icon(Icons.list_alt)),
+        //   Tab(text: 'Chat Now', icon: Icon(Icons.chat_outlined)),
+        //   Tab(text: 'Book Now', icon: Icon(Icons.edit_calendar_outlined)),
+        // ]),
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
               height: 80,
