@@ -110,7 +110,9 @@ class _WaxWorkersState extends State<WaxWorkers> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => IndivWorkerProfile(
-                                userID: waxWorkers[index].id.toString())),
+                                  userID: waxWorkers[index].id.toString(),
+                                  userName: waxWorkers[index].name.toString(),
+                                )),
                       );
                     },
                   ),

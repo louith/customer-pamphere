@@ -110,7 +110,9 @@ class _NailsFreelancersState extends State<NailsFreelancers> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => IndivWorkerProfile(
-                                userID: nailsWorkers[index].id.toString())),
+                                  userID: nailsWorkers[index].id.toString(),
+                                  userName: nailsWorkers[index].name.toString(),
+                                )),
                       );
                     },
                   ),

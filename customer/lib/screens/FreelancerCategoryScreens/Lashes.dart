@@ -110,7 +110,9 @@ class _LashesFreelancersState extends State<LashesFreelancers> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => IndivWorkerProfile(
-                                userID: lashWorkers[index].id.toString())),
+                                  userID: lashWorkers[index].id.toString(),
+                                  userName: lashWorkers[index].name.toString(),
+                                )),
                       );
                     },
                   ),
