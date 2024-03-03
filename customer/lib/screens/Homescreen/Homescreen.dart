@@ -4,7 +4,6 @@ import 'package:customer/screens/FreelancerCategoryScreens/Wax.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/Hair.dart';
 import 'package:customer/screens/FreelancerCategoryScreens/allWorkers.dart';
 import 'package:customer/screens/Homescreen/components/Location.dart';
-// import 'package:customer/screens/Homescreen/components/ServiceCategories.dart';
 import 'package:customer/screens/SignupLogin/components/ImagePicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,16 +12,6 @@ import '../FreelancerCategoryScreens/Makeup.dart';
 import '../FreelancerCategoryScreens/Nails.dart';
 import '../FreelancerCategoryScreens/Spa.dart';
 import 'package:line_icons/line_icons.dart';
-
-// int indexhome = 0;
-// final screenshome = [
-//   FaceandSkinFreelancers(),
-//   HairFreelancers(),
-//   LashesFreelancers(),
-//   MakeupFreelancers(),
-//   NailsFreelancers(),
-//   SpaFreelancers(),
-// ];
 
 class CustHome extends StatefulWidget {
   const CustHome({super.key});
@@ -34,7 +23,7 @@ class CustHome extends StatefulWidget {
 class _CustHomeState extends State<CustHome> {
   final TextEditingController? searchController = TextEditingController();
   Widget currentScreen = HairFreelancers();
-  // int indexhome = 0;
+
   final screenshome = [
     const HairFreelancers(),
     const MakeupFreelancers(),
@@ -43,6 +32,7 @@ class _CustHomeState extends State<CustHome> {
     const LashesFreelancers(),
     const WaxWorkers(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -118,25 +108,7 @@ class _CustHomeState extends State<CustHome> {
                     ),
                   ]),
             ),
-            title: TextField(
-              controller: searchController,
-              onChanged: (text) {
-                //perform ur search here
-              },
-              // onSubmitted: ,
-              decoration: InputDecoration(
-                hintText: 'Search',
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                ),
-                prefixIcon: IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {
-                    print('icon is pressed');
-                  },
-                ),
-              ),
-            ),
+            title: Text('Addresses here'),
             backgroundColor: kPrimaryColor,
           ),
           body: TabBarView(
