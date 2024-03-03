@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer/components/already_have_an_account_check.dart';
 import 'package:customer/components/widgets.dart';
 import 'package:customer/components/constants.dart';
@@ -273,6 +276,18 @@ class _CustSignUpState extends State<CustSignUp> {
           context, MaterialPageRoute(builder: ((context) => AfterSignup())));
     } else {
       print("Some error happened");
+    }
+  }
+
+  postEmailToFireStore() {
+    String username = _usernameController.text;
+    String email = _emailController.text;
+    try {
+      var user = FirebaseAuth.instance.currentUser;
+      CollectionReference ref = FirebaseFirestore.instance.collection('users');
+      ref.doc(user!.uid).set({'email': email, 'username': username});
+    } catch (e) {
+      log(e.toString());
     }
   }
 }

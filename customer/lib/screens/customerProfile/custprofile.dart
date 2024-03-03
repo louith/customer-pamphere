@@ -6,6 +6,7 @@ import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/Homescreen/my_profile.dart';
 import 'package:customer/screens/customerProfile/components/user_model.dart';
 import 'package:customer/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -46,6 +47,7 @@ class CustProfile extends StatefulWidget {
 
 class _CustProfileState extends State<CustProfile> {
   final FirebaseAuthService _auth = FirebaseAuthService();
+  final currentUser = FirebaseAuth.instance.currentUser;
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _firstname = TextEditingController();
@@ -81,8 +83,8 @@ class _CustProfileState extends State<CustProfile> {
   Future<void> addDataToFirestore() async {
     try {
       // Collection reference
-      CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
+      var users =
+          FirebaseFirestore.instance.collection('users').doc(currentUser!.uid);
 
       // Get data from text fields
       String firstName = _firstname.text;
@@ -116,7 +118,7 @@ class _CustProfileState extends State<CustProfile> {
       };
 
       // Add document to the collection
-      await users.add(userData);
+      await users.set(userData);
 
       print('Data added successfully');
       showAlertDialog(context, 'SUCCESS', 'Customer data added successfully.');
