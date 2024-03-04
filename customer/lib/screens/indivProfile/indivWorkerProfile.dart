@@ -70,7 +70,9 @@ class IndivWorkerProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screens = [
-      ServicesList(),
+      ServicesList(
+        userID: userName,
+      ),
       IndivChat(
         userName: userName,
       ),

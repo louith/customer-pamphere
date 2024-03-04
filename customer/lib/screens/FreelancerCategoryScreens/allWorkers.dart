@@ -175,7 +175,10 @@ class _AllWorkersState extends State<AllWorkers> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => IndivWorkerProfile(
-                                    userID: allWorkers[index].id.toString())),
+                                      userID: allWorkers[index].id.toString(),
+                                      userName:
+                                          allWorkers[index].name.toString(),
+                                    )),
                           );
                         },
                       ),
