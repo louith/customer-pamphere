@@ -40,6 +40,10 @@ class ChatServices extends ChangeNotifier {
       await _firebaseFirestore
           .collection('chat_rooms')
           .doc(chatRoomId)
+          .set({'ref': ''});
+      await _firebaseFirestore
+          .collection('chat_rooms')
+          .doc(chatRoomId)
           .collection('messages')
           .add(newMessage.toMap());
     } catch (e) {

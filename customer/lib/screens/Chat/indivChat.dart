@@ -182,18 +182,20 @@ class _IndivChatState extends State<IndivChat> {
   }
 
   void sendImage() async {
-    Reference referenceRoot = FirebaseStorage.instance.ref();
-    Reference dirImages =
-        referenceRoot.child('chatImages').child(currentUser!.uid);
-    await dirImages.putFile(image!);
-    String imageUrl = await dirImages.getDownloadURL();
-    chatServices.sendMessage(widget.userName, imageUrl).then((value) {
-      setState(() {
-        imageAdded = false;
-        image = null;
-        imageRef = null;
+    if (!imageAdded && image.toString().isEmpty) {
+      Reference referenceRoot = FirebaseStorage.instance.ref();
+      Reference dirImages =
+          referenceRoot.child('chatImages').child(currentUser!.uid);
+      await dirImages.putFile(image!);
+      String imageUrl = await dirImages.getDownloadURL();
+      chatServices.sendMessage(widget.userName, imageUrl).then((value) {
+        setState(() {
+          imageAdded = false;
+          image = null;
+          imageRef = null;
+        });
       });
-    });
+    }
   }
 
   Future<dynamic> attachImage() {
