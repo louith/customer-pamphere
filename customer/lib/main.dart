@@ -1,11 +1,11 @@
 import 'package:customer/components/constants.dart';
-import 'package:customer/screens/Homescreen/MainScreen.dart';
 import 'package:customer/screens/WelcomeScreen/CustWelcomeScreen.dart';
-import 'package:customer/screens/indivProfile/indivWorkerProfile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui';
+import 'dart:ui_web';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +59,6 @@ class MyApp extends StatelessWidget {
 
         //legit first page
         home: const CustWelcome());
-
 
     //main screen/home
     // home: CustMainScreen());
