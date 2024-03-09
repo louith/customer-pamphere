@@ -71,7 +71,7 @@ class IndivWorkerProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final screens = [
       ServicesList(
-        userID: userName,
+        userID: userID,
       ),
       IndivChat(
         userName: userName,
