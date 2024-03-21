@@ -347,7 +347,7 @@ class _CustProfileState extends State<CustProfile> {
                             addDataToFirestore();
                           },
                           style: ElevatedButton.styleFrom(
-                              primary: kPrimaryColor,
+                              backgroundColor: kPrimaryColor,
                               textStyle: TextStyle(color: kPrimaryLightColor)),
                           child: Text('SUBMIT'))
                     ])),

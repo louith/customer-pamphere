@@ -32,9 +32,9 @@ class _ImgSubmissionState extends State<ImgSubmission> {
   }) =>
       ElevatedButton(
         style: ElevatedButton.styleFrom(
+          foregroundColor: kPrimaryColor,
           minimumSize: Size.fromHeight(56),
-          primary: kPrimaryLightColor,
-          onPrimary: kPrimaryColor,
+          backgroundColor: kPrimaryLightColor,
           textStyle: TextStyle(fontSize: 20),
         ),
         child: Row(children: [
